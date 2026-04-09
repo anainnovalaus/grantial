@@ -1,0 +1,480 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 13% 17%; /* Darker background */
+    --foreground: 210 20% 98%;
+    --card: 220 13% 23%; /* Darker card background for better contrast */
+    --card-foreground: 210 20% 98%;
+    --popover: 220 13% 17%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 215 16% 36%; /* Lighter secondary */
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 16% 38%; /* Lighter muted */
+    --muted-foreground: 217.9 10.6% 90%; /* Lighter text on muted */
+    --accent: 215 16% 40%; /* Lighter accent */
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 16% 36%; /* More visible borders */
+    --input: 215 16% 36%; /* More visible inputs */
+    --ring: 263.4 70% 50.4%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html, body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Navigation spacing variables */
+:root {
+  --nav-side-width: 80px;
+  --nav-top-height: 64px;
+  --beta-bar-height: 0px;
+}
+
+/* Content padding to prevent overlap with navigation */
+.content-container {
+  padding-left: var(--nav-side-width);
+  padding-top: calc(var(--nav-top-height) + var(--beta-bar-height));
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Override padding for home page */
+.home-page {
+  padding-left: 0 !important;
+}
+
+
+/* Mobile responsive utilities */
+@media (max-width: 767px) {
+  .content-container {
+    padding-left: 0;
+    padding-bottom: 80px; /* Space for bottom navigation */
+  }
+}
+
+/* Safe area for devices with notch */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+
+/* Extra small screens breakpoint */
+@media (min-width: 400px) {
+  .xs\:pl-20 {
+    padding-left: 5rem;
+  }
+}
+
+/* Bot icon float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+}
+
+.animate-float {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Typing cursor animation */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background-color: currentColor;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Chat message appear animation */
+@keyframes message-appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-message-appear {
+  animation: message-appear 0.3s ease forwards;
+}
+
+.animate-fade-in {
+  animation: message-appear 0.3s ease forwards;
+}
+
+/* Slide up animation for the chat input */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease forwards;
+}
+
+/* Slide down animation for quick action buttons */
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease forwards;
+}
+
+/* Slide in animation for chat components */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out forwards;
+}
+
+/* Assistant light background color */
+.bg-assistant-light {
+  @apply dark:bg-slate-800 bg-[rgb(249,246,255)];
+}
+
+/* Assistant border color */
+.border-assistant-border {
+  @apply dark:border-slate-700 border-[rgb(238,230,252)];
+}
+
+/* Styles for assistant content to preserve HTML formatting */
+.assistant-content {
+  @apply space-y-3;
+}
+
+.assistant-content h1 {
+  @apply font-bold my-3;
+  font-size: inherit;
+}
+
+.assistant-content h2 {
+  @apply font-bold my-2;
+  font-size: inherit;
+}
+
+.assistant-content h3 {
+  @apply font-semibold my-2;
+  font-size: inherit;
+}
+
+.assistant-content strong {
+  @apply font-bold;
+}
+
+.assistant-content em {
+  @apply italic;
+}
+
+.assistant-content ul {
+  @apply list-disc pl-5 my-3 space-y-2;
+}
+
+.assistant-content li {
+  @apply my-1 pl-1;
+  font-size: inherit;
+}
+
+.assistant-content p {
+  @apply my-3;
+}
+
+.assistant-content a {
+  @apply text-primary hover:underline;
+}
+
+/* Improved line break handling */
+.assistant-content br {
+  display: block;
+  content: "";
+  margin-top: 0.75em;
+}
+
+/* Fix for consecutive line breaks */
+.assistant-content br + br {
+  margin-top: 0;
+}
+
+/* Collapsible content animation */
+.collapsible-content {
+  overflow: hidden;
+}
+
+.collapsible-content[data-state='open'] {
+  animation: collapsible-down 0.2s ease-out;
+}
+
+.collapsible-content[data-state='closed'] {
+  animation: collapsible-up 0.2s ease-out;
+}
+
+@keyframes collapsible-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes collapsible-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+/* Grant Summary Content Styling */
+.grant-summary-content {
+  @apply text-foreground leading-relaxed max-w-none;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.grant-summary-content h1 {
+  @apply text-2xl md:text-3xl font-bold mt-0 mb-6 text-foreground;
+  line-height: 1.3;
+}
+
+.grant-summary-content h2 {
+  @apply text-xl md:text-2xl font-bold mt-8 mb-4 text-foreground;
+  line-height: 1.4;
+}
+
+.grant-summary-content h3 {
+  @apply text-lg md:text-xl font-semibold mt-6 mb-3 text-foreground;
+  line-height: 1.4;
+}
+
+.grant-summary-content p {
+  @apply mb-4 text-base text-foreground/90 dark:text-foreground/85;
+  line-height: 1.7;
+}
+
+.grant-summary-content ul {
+  @apply list-disc pl-6 mb-6 mt-4 space-y-2;
+}
+
+.grant-summary-content ol {
+  @apply list-decimal pl-6 mb-6 mt-4 space-y-2;
+}
+
+.grant-summary-content li {
+  @apply mb-2 pl-1 text-base text-foreground/90 dark:text-foreground/85;
+  line-height: 1.6;
+}
+
+.grant-summary-content strong {
+  @apply font-semibold text-foreground;
+}
+
+.grant-summary-content em {
+  @apply italic;
+}
+
+.grant-summary-content a {
+  @apply text-primary hover:underline font-medium;
+}
+
+/* Ensure proper spacing between consecutive elements */
+.grant-summary-content h1 + h2,
+.grant-summary-content h2 + h3 {
+  @apply mt-6;
+}
+
+.grant-summary-content h2 + p,
+.grant-summary-content h3 + p {
+  @apply mt-3;
+}
+
+.grant-summary-content ul + h2,
+.grant-summary-content ol + h2,
+.grant-summary-content p + h2 {
+  @apply mt-8;
+}
+
+/* Grant Tips Section Styling */
+.grant-tips-section {
+  @apply relative bg-amber-50/30 dark:bg-amber-950/10 rounded-lg p-6 mt-8 mb-8 backdrop-blur-sm;
+}
+
+.grant-tips-content {
+  @apply leading-relaxed max-w-none text-amber-800/90 dark:text-amber-200/80;
+}
+
+.grant-tips-content h1 {
+  @apply text-lg md:text-xl font-bold mt-4 mb-3 text-amber-900 dark:text-amber-100;
+  line-height: 1.3;
+}
+
+.grant-tips-content h2 {
+  @apply text-base md:text-lg font-bold mt-4 mb-3 text-amber-900 dark:text-amber-100;
+  line-height: 1.4;
+}
+
+.grant-tips-content h3 {
+  @apply text-sm md:text-base font-semibold mt-3 mb-2 text-amber-900 dark:text-amber-100;
+  line-height: 1.4;
+}
+
+.grant-tips-content p {
+  @apply mb-3 text-sm;
+  line-height: 1.6;
+}
+
+.grant-tips-content ul {
+  @apply list-disc pl-6 mb-4 mt-3 space-y-1.5;
+}
+
+.grant-tips-content ol {
+  @apply list-decimal pl-6 mb-4 mt-3 space-y-1.5;
+}
+
+.grant-tips-content li {
+  @apply mb-1.5 pl-1 text-sm;
+  line-height: 1.6;
+}
+
+.grant-tips-content strong {
+  @apply font-bold text-amber-900 dark:text-amber-100;
+}
+
+.grant-tips-content em {
+  @apply italic;
+}
+
+.grant-tips-content a {
+  @apply text-amber-900 dark:text-amber-100 hover:underline font-medium;
+}
+
+/* Nested list styling for tips */
+.grant-tips-content ul ul,
+.grant-tips-content ol ol,
+.grant-tips-content ul ol,
+.grant-tips-content ol ul {
+  @apply mt-2 mb-2;
+}
+
+/* Ensure proper spacing in tips section */
+.grant-tips-content h2 + p,
+.grant-tips-content h3 + p {
+  @apply mt-2;
+}
+
+.grant-tips-content p + ul,
+.grant-tips-content p + ol {
+  @apply mt-3;
+}
+
+/* Search Suggestions Dropdown Styling */
+.suggestions-dropdown {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted)) transparent;
+}
+
+.suggestions-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 3px;
+}
+
+.suggestions-dropdown::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}

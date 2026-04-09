@@ -1,0 +1,22 @@
+# Project Dependencies and Technologies
+
+boto3
+psycopg2-binary
+requests
+flask
+flask-cors
+python-dotenv
+openai==1.93.3
+pymilvus
+nltk
+msal
+python-docx
+argon2-cffi
+python-pptx
+pdfplumber
+pypdf>=4.0
+openpyxl>=3.1
+numpy>=1.24
+joblib>=1.3
+lightgbm>=4.0
+reportlab>=4.0
